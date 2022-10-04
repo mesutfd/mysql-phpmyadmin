@@ -1,6 +1,8 @@
-FROM mysql:5.7.39
+FROM mysql:latest
 
-RUN apt-get update
+ENV MYSQL_ROOT_PASSWORD=root
+
+COPY ./shamsdb.sql /docker-entrypoint-initdb.d/
 
 #RUN mysql -u root
 
@@ -8,4 +10,4 @@ RUN apt-get update
 
 #RUN \q
 
-CMD mysql
+#CMD mysql
