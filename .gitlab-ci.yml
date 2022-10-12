@@ -3,15 +3,15 @@ stages:
   - deploy
 
 variables:
-  CONTAINER_IMAGE: reg.fn/shams/mysql:${CI_COMMIT_SHORT_SHA}
+  CONTAINER_IMAGE: [ADDRESS]/mysql:${CI_COMMIT_SHORT_SHA}
 
 build:
   stage: build
   script:
-    - docker login -u h.hashemi -p '123456Qaz' reg.fn
+    - docker login -u [USERNAME] -p '[PASSWORD]' reg.fn
     - docker build -t ${CONTAINER_IMAGE} .
     - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
-    - docker tag ${CONTAINER_IMAGE} reg.fn/shams/mysql:latest
+    - docker tag ${CONTAINER_IMAGE} [ADDRESS]/mysql:latest
     - docker push ${CONTAINER_IMAGE}
 
 deploy:
